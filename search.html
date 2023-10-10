@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="/registerapp/search/" method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" name='name'>
+            <input type="Submit" value="Search">
+
+
+        </div>
+    </form>
+    {% if data %}{% for value in data %} id:{{value.id}} name:{{value.name}} Email:{{value.email}}
+    <form action="/registerapp/search/" method="POST">
+        {% csrf_token %}
+
+
+        <input type="hidden" id="id" name='id' value="{{value.id}}">
+        <input type="Submit" value="Delete">
+
+
+
+
+    </form>
+    <form action="/registerapp/update/" method="POST">
+        {% csrf_token %}
+
+
+        <input type="hidden" id="email" name='email' value="{{value.email}}">
+        <input type="hidden" id="name" name='name' value="{{value.name}}">
+        <input type="hidden" id="id" name='id' value="{{value.id}}">
+        <input type="hidden" id="from" name='from' value="search">
+        <input type="Submit" value="update">
+
+
+
+
+    </form>
+    {% endfor %} {% endif %}
+
+</body>
+
+</html>
